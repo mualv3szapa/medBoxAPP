@@ -1,0 +1,15 @@
+{
+  "name": "appapi",
+  "version": "1.0.0",
+  "description": "api voltada ao realização do tcc do curso de automação industrial da etec julio de mesquita",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mualv3szapa/medBoxAPP.git"
+  },
+  "author": "Murilo Alves Zapiello",
+  "license": "ISC"
+}
