@@ -3,49 +3,83 @@ import { Container } from "../../components/Container/Container";
 import { AddMedInput, AddMedTitle } from "./Style";
 import { useState } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-import { TimePick } from "../../components/TimePick/TimePick";
+import { DateTimePick, LastDayPick } from "../../components/TimePick/TimePick";
+import { Alert } from "react-native";
 
 export const AddMedicine = ({ navigation }) => {
-  const [showModalTime, setShowModalTime] = useState(false);
+  const [showModalDateTime, setShowModalDateTime] = useState(false);
 
-  const [showModalDay, setShowModalDay] = useState(false);
+  const [showModalLastDay, setShowModalLastDay] = useState(false);
 
-  const showTimePicker = () => {
-    setShowModalTime(true);
+  // const [nomeMedicamento, setNomeMedicamento] = useState("");
+  // const [numeroCompartimento, setNumeroCompartimento] = useState();
+  // const [qtdMedicamento, setQtdMedicamento] = useState();
+  // const [ horaEmHora, setHoraEmHora ] = useState();
 
-    console.log(showModalDay);
+  // const SendMedicine = () => {
+  //   Alert.alert(
+  //     `Cadastro efetuado do medicamento ${nomeMedicamento} no compartimento ${numeroCompartimento} contendo ${qtdMedicamento} unidades para tomar de ${horaEmHora} em ${horaEmHora} horas`
+  //   );
+  //   navigation.navigate("Main");
+  // };
+
+  const showDateTimePicker = () => {
+    setShowModalDateTime(true);
   };
 
-  const hideTimePicker = () => {
-    setShowModalTime(false);
+  const hideDateTimePicker = () => {
+    setShowModalDateTime(false);
   };
 
-  const handleConfirm = (date) => {
+  const handleConfirmDateTime = (date) => {
     console.warn("A date has been picked: ", date);
-    hideTimePicker();
+    hideDateTimePicker();
+  };
+  const showLastDatePicker = () => {
+    setShowModalLastDay(true);
+  };
+
+  const hideLastDatePicker = () => {
+    setShowModalDateTime(false);
+  };
+
+  const handleConfirmLastDate = (date) => {
+    console.warn("A date has been picked: ", date);
+    hideDateTimePicker();
   };
 
   return (
     <Container>
       <AddMedTitle>Cadastro de Medicamento</AddMedTitle>
 
-      <AddMedInput placeholder="Nome do medicamento" />
+      <AddMedInput
+        placeholder="Nome do medicamento"
+        // onChangeText={(x) => setNomeMedicamento(x)}
+      />
+      <AddMedInput
+        keyboardType="numeric"
+        placeholder="Compartimento do medicamento"
+        // onChangeText={(x) => setNumeroCompartimento(x)}
+      />
       <AddMedInput
         keyboardType="numeric"
         placeholder="Quantidade de medicamentos"
+        // onChangeText={(x) => setQtdMedicamento}
       />
-      <AddMedInput
-        keyboardType="numeric"
-        placeholder="Quantos dias irá tomar o remédio"
-      />
+
       <AddMedInput
         keyboardType="numeric"
         placeholder="De quantas em quantas horas?"
+        // onChangeText={(x) => setHoraEmHora}
       />
 
       <ButtonTime
         text={"Selecione o dia e horário do medicamento"}
-        onPress={showTimePicker}
+        onPress={showDateTimePicker}
+      />
+      <ButtonTime
+        text={"Selecione o ultimo dia do medicamento"}
+        onPress={showLastDatePicker}
       />
 
       <ButtonToCadastrar
@@ -53,11 +87,18 @@ export const AddMedicine = ({ navigation }) => {
         text={"Cadastrar"}
       />
 
-      <TimePick
-        isVisible={showModalTime}
+      <DateTimePick
+        isVisible={showModalDateTime}
         mode={"datetime"}
-        onConfirm={handleConfirm}
-        onCancel={hideTimePicker}
+        onConfirm={handleConfirmDateTime}
+        onCancel={hideDateTimePicker}
+      />
+
+      <LastDayPick
+        isVisible={showModalLastDay}
+        mode={"date"}
+        onConfirm={handleConfirmLastDate}
+        onCancel={hideLastDatePicker}
       />
     </Container>
   );

@@ -18,6 +18,7 @@ export const MedCounterTitle = styled.Text`
 `;
 
 export const MedCounterList = styled.Text`
+  text-align: center;
   justify-self: center;
   align-self: center;
   font-size: 12px;

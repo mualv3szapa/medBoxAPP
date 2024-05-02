@@ -4,7 +4,7 @@ export const AddMedTitle = styled.Text`
   font-size: 24px;
   font-family: "Quicksand_600SemiBold";
   align-self: center;
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 30px;
 `;
 
