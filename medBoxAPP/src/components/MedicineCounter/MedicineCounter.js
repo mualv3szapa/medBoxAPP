@@ -1,5 +1,13 @@
+import { useState } from "react";
 import { ListComponent } from "./List/List";
 import { MedCounterList, MedCounterTitle, MedCounterView } from "./Style";
+import api from "../../services/api";
+
+const [medicamentos, setMedicamentos] = useState([]);
+
+async function GetMedicamentos() {
+  const response = await api.get('/Medicamento')
+}
 
 const Medicamentos = [
   {
@@ -32,7 +40,8 @@ export const MedicineCounter = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <MedCounterList>
-            Compartimento {item.compartimento}: {item.nome} restantes: {item.quantidade}
+            Compartimento {item.compartimento}: {item.nome} restantes:{" "}
+            {item.quantidade}
           </MedCounterList>
         )}
       />

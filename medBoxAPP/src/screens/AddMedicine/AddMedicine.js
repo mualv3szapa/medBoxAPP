@@ -67,11 +67,6 @@ export const AddMedicine = ({ navigation }) => {
         // onChangeText={(x) => setQtdMedicamento}
       />
 
-      <AddMedInput
-        keyboardType="numeric"
-        placeholder="De quantas em quantas horas?"
-        // onChangeText={(x) => setHoraEmHora}
-      />
 
       <ButtonTime
         text={"Selecione o dia e horário do medicamento"}
@@ -80,6 +75,18 @@ export const AddMedicine = ({ navigation }) => {
       <ButtonTime
         text={"Selecione o ultimo dia do medicamento"}
         onPress={showLastDatePicker}
+      />
+
+      <AddMedInput
+        keyboardType="numeric"
+        placeholder="De quantas em quantas horas?"
+        // onChangeText={(x) => setHoraEmHora}
+      />
+
+      <AddMedInput
+        keyboardType="numeric"
+        placeholder="Quantidade de medicamento que irá tomar no horário"
+        // onChangeText={(x) => setQtdMedicamento}
       />
 
       <ButtonToCadastrar
