@@ -1,5 +1,8 @@
 import { ButtonTime, ButtonToCadastrar } from "../../components/Button/Button";
-import { Container } from "../../components/Container/Container";
+import {
+  Container,
+  ContainerScroll,
+} from "../../components/Container/Container";
 import { AddMedInput, AddMedTitle } from "./Style";
 import { useState } from "react";
 import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
@@ -49,64 +52,65 @@ export const AddMedicine = ({ navigation }) => {
   };
 
   return (
-    <Container>
-      <AddMedTitle>Cadastro de Medicamento</AddMedTitle>
+    <ContainerScroll>
+      <Container>
+        <AddMedTitle>Cadastro de Medicamento</AddMedTitle>
 
-      <AddMedInput
-        placeholder="Nome do medicamento"
-        // onChangeText={(x) => setNomeMedicamento(x)}
-      />
-      <AddMedInput
-        keyboardType="numeric"
-        placeholder="Compartimento do medicamento"
-        // onChangeText={(x) => setNumeroCompartimento(x)}
-      />
-      <AddMedInput
-        keyboardType="numeric"
-        placeholder="Quantidade de medicamentos"
-        // onChangeText={(x) => setQtdMedicamento}
-      />
+        <AddMedInput
+          placeholder="Nome do medicamento"
+          // onChangeText={(x) => setNomeMedicamento(x)}
+        />
+        <AddMedInput
+          keyboardType="numeric"
+          placeholder="Compartimento do medicamento"
+          // onChangeText={(x) => setNumeroCompartimento(x)}
+        />
+        <AddMedInput
+          keyboardType="numeric"
+          placeholder="Quantidade de medicamentos"
+          // onChangeText={(x) => setQtdMedicamento}
+        />
 
+        <ButtonTime
+          text={"Selecione o dia e horário do medicamento"}
+          onPress={showDateTimePicker}
+        />
+        <ButtonTime
+          text={"Selecione o ultimo dia do medicamento"}
+          onPress={showLastDatePicker}
+        />
 
-      <ButtonTime
-        text={"Selecione o dia e horário do medicamento"}
-        onPress={showDateTimePicker}
-      />
-      <ButtonTime
-        text={"Selecione o ultimo dia do medicamento"}
-        onPress={showLastDatePicker}
-      />
+        <AddMedInput
+          keyboardType="numeric"
+          placeholder="De quantas em quantas horas?"
+          // onChangeText={(x) => setHoraEmHora}
+        />
 
-      <AddMedInput
-        keyboardType="numeric"
-        placeholder="De quantas em quantas horas?"
-        // onChangeText={(x) => setHoraEmHora}
-      />
+        <AddMedInput
+          keyboardType="numeric"
+          placeholder="Quantidade de medicamento que irá tomar no horário"
+          // onChangeText={(x) => setQtdMedicamento}
+        />
 
-      <AddMedInput
-        keyboardType="numeric"
-        placeholder="Quantidade de medicamento que irá tomar no horário"
-        // onChangeText={(x) => setQtdMedicamento}
-      />
+        <ButtonToCadastrar
+          onPress={() => navigation.navigate("Main")}
+          text={"Cadastrar"}
+        />
 
-      <ButtonToCadastrar
-        onPress={() => navigation.navigate("Main")}
-        text={"Cadastrar"}
-      />
+        <DateTimePick
+          isVisible={showModalDateTime}
+          mode={"datetime"}
+          onConfirm={handleConfirmDateTime}
+          onCancel={hideDateTimePicker}
+        />
 
-      <DateTimePick
-        isVisible={showModalDateTime}
-        mode={"datetime"}
-        onConfirm={handleConfirmDateTime}
-        onCancel={hideDateTimePicker}
-      />
-
-      <LastDayPick
-        isVisible={showModalLastDay}
-        mode={"date"}
-        onConfirm={handleConfirmLastDate}
-        onCancel={hideLastDatePicker}
-      />
-    </Container>
+        <LastDayPick
+          isVisible={showModalLastDay}
+          mode={"date"}
+          onConfirm={handleConfirmLastDate}
+          onCancel={hideLastDatePicker}
+        />
+      </Container>
+    </ContainerScroll>
   );
 };
