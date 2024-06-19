@@ -1,61 +1,73 @@
 import { useEffect, useState } from "react";
-import { ListComponent } from "./List/List";
 import { MedCounterList, MedCounterTitle, MedCounterView } from "./Style";
 import api from "../../services/api";
-
-// const Medicamentos = [
-//   {
-//     id: 1,
-//     nome: "Dipirona",
-//     quantidade: 4,
-//     compartimento: 1,
-//   },
-//   {
-//     id: 2,
-//     nome: "Tramal",
-//     quantidade: 2,
-//     compartimento: 2,
-//   },
-//   {
-//     id: 3,
-//     nome: "Cloridrato de ciclobenzaprina",
-//     quantidade: 1,
-//     compartimento: 3,
-//   },
-// ];
+import { ButtonCancel } from "../Button/Button";
 
 export const MedicineCounter = () => {
-  const [medicamentos, setMedicamentos] = useState([]);
+  const [compartimento1, setCompartimento1] = useState({});
+  const [compartimento2, setCompartimento2] = useState({});
+  const [compartimento3, setCompartimento3] = useState({});
 
-  async function GetMedicamentos() {
+  async function GetCompartimento1() {
     try {
-      const promise = await api.get("/Medicamento");
+      const promise = await api.get("/Compartimento1");
+      setCompartimento1(promise.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-      setMedicamentos(promise.data);
+  async function GetCompartimento2() {
+    try {
+      const promise = await api.get("/Compartimento2");
+      setCompartimento2(promise.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function GetCompartimento3() {
+    try {
+      const promise = await api.get("/Compartimento3");
+      setCompartimento3(promise.data);
     } catch (error) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    GetMedicamentos();
+    GetCompartimento1();
+    GetCompartimento2();
+    GetCompartimento3();
   }, []);
 
   return (
     <MedCounterView>
       <MedCounterTitle>Medicamentos para tomar hoje</MedCounterTitle>
 
-      <ListComponent
-        data={medicamentos}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <MedCounterList>
-            Compartimento {item.compartimento}: {item.nome} restantes:{" "}
-            {item.qtdMedicamentoAdd}
-          </MedCounterList>
-        )}
-      />
+      {compartimento1 && (
+        <MedCounterList>
+          Compartimento {compartimento1.numeroCompartimento}:{" "}
+          {compartimento1.medicamentoId?.nome} restantes:{" "}
+          {compartimento1.medicamentoId?.qtdMedicamentoAdd}
+        </MedCounterList>
+      )}
+
+      {compartimento2 && (
+        <MedCounterList>
+          Compartimento {compartimento2.numeroCompartimento}:{" "}
+          {compartimento2.medicamentoId?.nome} restantes:{" "}
+          {compartimento2.medicamentoId?.qtdMedicamentoAdd}
+        </MedCounterList>
+      )}
+
+      {compartimento3 && (
+        <MedCounterList>
+          Compartimento {compartimento3.numeroCompartimento}:{" "}
+          {compartimento3.medicamentoId?.nome} restantes:{" "}
+          {compartimento3.medicamentoId?.qtdMedicamentoAdd}
+        </MedCounterList>
+      )}
     </MedCounterView>
   );
 };
