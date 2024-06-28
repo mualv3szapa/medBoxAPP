@@ -4,10 +4,11 @@ const mongoose = require("mongoose");
 const app = express();
 const port = process.env.PORT || 3000;
 // const ip = "192.168.81.168";
-const ip = "192.168.168.168";
+// const ip = "192.168.33.168";
 // const ip = "192.168.97.168";
 // const ip = "192.168.15.5";
-// const ip = "172.20.10.5";
+const ip = "192.168.246.168";
+// const ip = "10.0.0.102";
 
 app.use(express.json());
 

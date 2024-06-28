@@ -18,6 +18,7 @@ import api from "../../services/api";
 export const AddMedicine = ({ navigation }) => {
   const [showModalDateTime, setShowModalDateTime] = useState(false);
   const [medicamentoId, setMedicamentoId] = useState("");
+  const [compartimentoId, setCompartimentoId] = useState("");
   const [nomeMedicamento, setNomeMedicamento] = useState("");
   const [numeroCompartimento, setNumeroCompartimento] = useState();
   const [dateTime, setDateTime] = useState("");
@@ -25,22 +26,25 @@ export const AddMedicine = ({ navigation }) => {
   const [qtdMedicamentoDiario, setQtdMedicamentoDiario] = useState();
 
   async function PostMedicamento() {
-    await api.post("/Medicamento", {
-      _id: medicamentoId,
-      nome: nomeMedicamento,
-      primeiraData: dateTime,
-      qtdMedicamentoAdd: qtdMedicamentoAdd,
-      qtdMedicamentoDiario: qtdMedicamentoDiario,
-    });
+    try {
+      await api.post("/Medicamento", {
+        _id: medicamentoId,
+        nome: nomeMedicamento,
+        primeiraData: dateTime,
+        qtdMedicamentoAdd: qtdMedicamentoAdd,
+        qtdMedicamentoDiario: qtdMedicamentoDiario,
+      });
 
-    navigation.replace("Main");
-  }
+      await api.post(`/Compartimento${numeroCompartimento}`, {
+        _id: compartimentoId,
+        medicamentoId: medicamentoId,
+        numeroCompartimento: numeroCompartimento,
+      });
 
-  async function associatingWithACompartment() {
-    await api.post(`/Compartimento${numeroCompartimento}`, {
-      medicamentoId: medicamentoId,
-      numeroCompartimento: numeroCompartimento,
-    });
+      navigation.replace("Main");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const showDateTimePicker = () => {
