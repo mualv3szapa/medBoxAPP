@@ -27,8 +27,7 @@ export const AddMedicine = ({ navigation }) => {
 
   async function PostMedicamento() {
     try {
-      await api.post("/Medicamento", {
-        _id: medicamentoId,
+      const response = await api.post("/Medicamento", {
         nome: nomeMedicamento,
         primeiraData: dateTime,
         qtdMedicamentoAdd: qtdMedicamentoAdd,
@@ -36,8 +35,7 @@ export const AddMedicine = ({ navigation }) => {
       });
 
       await api.post(`/Compartimento${numeroCompartimento}`, {
-        _id: compartimentoId,
-        medicamentoId: medicamentoId,
+        medicamentoId: response.data._id,
         numeroCompartimento: numeroCompartimento,
       });
 

@@ -61,7 +61,7 @@ const CalendarSelectData = () => {
         alignSelf: "center",
         backgroundColor: "#FAFAFA",
         marginBottom: 20,
-        marginTop: 10,
+        marginTop: 40,
       }}
       onDayPress={(day) => {
         setSelected(day.dateString);

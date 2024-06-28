@@ -4,14 +4,15 @@ import api from "../../services/api";
 import { ButtonCancel } from "../Button/Button";
 
 export const MedicineCounter = () => {
-  const [compartimento1, setCompartimento1] = useState({});
-  const [compartimento2, setCompartimento2] = useState({});
-  const [compartimento3, setCompartimento3] = useState({});
+  const [compartimento1, setCompartimento1] = useState(null);
+  const [compartimento2, setCompartimento2] = useState(null);
+  const [compartimento3, setCompartimento3] = useState(null);
 
   async function GetCompartimento1() {
     try {
       const promise = await api.get("/Compartimento1");
       setCompartimento1(promise.data);
+      console.log(promise.data);
     } catch (error) {
       console.log(error);
     }
@@ -21,6 +22,7 @@ export const MedicineCounter = () => {
     try {
       const promise = await api.get("/Compartimento2");
       setCompartimento2(promise.data);
+      console.log(promise.data);
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +32,7 @@ export const MedicineCounter = () => {
     try {
       const promise = await api.get("/Compartimento3");
       setCompartimento3(promise.data);
+      console.log(promise.data);
     } catch (error) {
       console.log(error);
     }
@@ -45,27 +48,24 @@ export const MedicineCounter = () => {
     <MedCounterView>
       <MedCounterTitle>Medicamentos para tomar hoje</MedCounterTitle>
 
-      {compartimento1 && (
+      {compartimento1 != null && (
         <MedCounterList>
-          Compartimento {compartimento1.numeroCompartimento}:{" "}
-          {compartimento1.medicamentoId?.nome} restantes:{" "}
-          {compartimento1.medicamentoId?.qtdMedicamentoAdd}
+          Compartimento {compartimento1[0].numeroCompartimento}:{" "}
+          {compartimento1[0].medicamentoId?.nome}
         </MedCounterList>
       )}
 
-      {compartimento2 && (
+      {compartimento2 != null && (
         <MedCounterList>
-          Compartimento {compartimento2.numeroCompartimento}:{" "}
-          {compartimento2.medicamentoId?.nome} restantes:{" "}
-          {compartimento2.medicamentoId?.qtdMedicamentoAdd}
+          Compartimento {compartimento2[0].numeroCompartimento}:{" "}
+          {compartimento2[0].medicamentoId?.nome}
         </MedCounterList>
       )}
 
-      {compartimento3 && (
+      {compartimento3 != null && (
         <MedCounterList>
-          Compartimento {compartimento3.numeroCompartimento}:{" "}
-          {compartimento3.medicamentoId?.nome} restantes:{" "}
-          {compartimento3.medicamentoId?.qtdMedicamentoAdd}
+          Compartimento {compartimento3[0].numeroCompartimento}:{" "}
+          {compartimento3[0].medicamentoId?.nome}
         </MedCounterList>
       )}
     </MedCounterView>

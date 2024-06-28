@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderView = styled.View`
   width: 100%;
-  height: 175px;
+  height: 155px;
   background-color: #00e1ab;
   border-bottom-left-radius: 90px;
   border-bottom-right-radius: 90px;

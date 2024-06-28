@@ -7,8 +7,8 @@ const port = process.env.PORT || 3000;
 // const ip = "192.168.33.168";
 // const ip = "192.168.97.168";
 // const ip = "192.168.15.5";
-const ip = "192.168.246.168";
-// const ip = "10.0.0.102";
+// const ip = "192.168.246.168";
+const ip = "10.0.0.102";
 
 app.use(express.json());
 

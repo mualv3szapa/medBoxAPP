@@ -5,7 +5,7 @@ export const MedCounterView = styled.View`
   width: 90%;
   height: 160px;
   border: 2px solid #00e1ab;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   border-radius: 100px;
 `;
@@ -14,7 +14,8 @@ export const MedCounterTitle = styled.Text`
   font-size: 15px;
   font-family: "Quicksand_500Medium";
   color: #5f5c6b;
-  padding-top: 20px;
+  padding-top: 35px;
+  padding-bottom: 10px;
 `;
 
 export const MedCounterList = styled.Text`
